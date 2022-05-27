@@ -1,0 +1,24 @@
+\documentclass[oneside]{report}
+\input{settings.tex}
+\begin{document}
+\pagenumbering{roman}
+	\tableofcontents
+	\listoffigures
+	% \listoftables 
+	\clearpage
+\pagenumbering{arabic}
+	\begin{abstract}
+		\subimport{src/}{abstract}
+	\end{abstract}
+
+	\chapter{Introduction}
+		\subimport{src/Introduction}{main}
+	\chapter{Modelling}
+		\subimport{src/Modelling/}{main}
+	\chapter{Conclusion}
+		\subimport{src/}{Conclusion.tex}
+	\chapter{Discussion}
+		\subimport{src/}{Discussion.tex}
+
+	\bibliography{bibliography}
+\end{document}

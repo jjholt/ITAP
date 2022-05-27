@@ -1,0 +1,136 @@
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.495\textwidth}
+        \begin{tikzpicture}[scale=0.8]
+            \begin{loglogaxis}[
+                % width = 14cm, height = 6cm,
+                xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+                title = {},
+            ]
+                \addplot+[only marks] table [ col sep=comma,]
+                    {../Simplified-Model/constant-displacement/Frequencies/spigot_maxima.csv};
+                \addlegendentry{Spigot}
+                \addplot+[ only marks ] table [col sep=comma,]
+                    {../Simplified-Model/constant-displacement/Frequencies/stem_maxima.csv};
+                \addlegendentry{Stem}
+                \addplot+[ only marks ] table [col sep=comma, ]
+                    {../Simplified-Model/constant-displacement/Frequencies/collar_maxima.csv};
+                \addlegendentry{Collar}
+            \end{loglogaxis}
+        \end{tikzpicture}
+        \caption{Constant displacement}
+    \end{subfigure} %
+    \begin{subfigure}{0.495\textwidth}
+        \begin{tikzpicture}[scale=0.8]
+            \begin{loglogaxis}[
+                % width = 14cm, height = 6cm,
+                xlabel = {Frequency [Hz]}, ylabel = {Maximum displacement [m]},
+                title = {},
+            ]
+                \addplot+[only marks] table [ col sep=comma,]
+                    {../Simplified-Model/constant-force/Frequencies/spigot_maxima.csv};
+                \addlegendentry{Spigot}
+                \addplot+[ only marks ] table [col sep=comma,]
+                    {../Simplified-Model/constant-force/Frequencies/stem_maxima.csv};
+                \addlegendentry{Stem}
+                \addplot+[ only marks ] table [col sep=comma, ]
+                    {../Simplified-Model/constant-force/Frequencies/collar_maxima.csv};
+                \addlegendentry{Collar}
+            \end{loglogaxis}
+        \end{tikzpicture}
+        \caption{Constant load }
+    \end{subfigure}
+\caption{Maximum displacement as a function of frequency for 100 periods. (a) displacement: \SI{0.2}{\micro\metre}, (b) load: \SI{0.2}{\micro\newton}.}
+\label{fig:max-displacement-6}
+\end{figure}
+
+
+
+
+\begin{figure}[h] \centering
+    \begin{subfigure}{0.495\textwidth}
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                xlabel = {Frequency [Hz]}, ylabel = {Displacement relative to spigot},
+                % legend pos = north west,
+                % ymin=-1,
+                % extra y ticks = {1},
+            ]
+                \addplot+ [only marks] table [col sep=comma]
+                    {../Simplified-Model/constant-displacement/Frequencies/spigot_maxima_normalised.csv};
+                \addlegendentry{Spigot}
+                \addplot+[only marks, ] table [col sep=comma,]
+                    {../Simplified-Model/constant-displacement/Frequencies/stem_maxima_normalised.csv};
+                \addlegendentry{Stem}
+                \addplot+[ only marks,] table [col sep=comma,]
+                    {../Simplified-Model/constant-displacement/Frequencies/collar_maxima_normalised.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Constant displacement}
+    \end{subfigure} %
+    \begin{subfigure}{0.495\textwidth}
+        \begin{tikzpicture}[scale=0.8]
+            \begin{axis}[
+                % width = 14cm, height = 6cm,
+                xlabel = {Frequency [Hz]}, ylabel = {Displacement relative to spigot},
+                % legend pos = north west,
+                % ymin=-1,
+                % extra y ticks = {1},
+            ]
+                \addplot+ [only marks] table [col sep=comma]
+                    {../Simplified-Model/constant-force/Frequencies/spigot_maxima_normalised.csv};
+                \addlegendentry{Spigot}
+                \addplot+[only marks, ] table [col sep=comma,]
+                    {../Simplified-Model/constant-force/Frequencies/stem_maxima_normalised.csv};
+                \addlegendentry{Stem}
+                \addplot+[ only marks,] table [col sep=comma,]
+                    {../Simplified-Model/constant-force/Frequencies/collar_maxima_normalised.csv};
+                \addlegendentry{Collar}
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Constant load}
+    \end{subfigure}
+\caption{Maximum displacement relative to spigot as a function of frequency. (a) displacement: \SI{0.2}{\micro\metre}, (b) load: \SI{0.2}{\micro\newton}.}
+\label{fig:normalisation}
+\end{figure}
+
+
+\begin{figure}[h]\centering
+    \begin{subfigure}{0.495\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                ymin = 0,xmin=0,
+                xlabel = {Offset [mm]}, ylabel = {Maximum displacement [mm]}
+            ]
+            \foreach \n in {1,...,3} {
+                \addplot+[no marks] table [
+                    col sep=comma, x expr = \thisrowno{0}, y expr = 1e3*\thisrowno{\n}
+                ] {../Simplified-Model/constant-displacement/Offsets/offset_displacements.csv};
+            };
+            \legend{Spigot, Stem, Collar};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Constant displacement}
+    \end{subfigure}
+    \begin{subfigure}{0.495\textwidth}
+        \begin{tikzpicture}
+            \begin{axis}[
+                % width = 8cm, height = 6cm,
+                ymin = 0,xmin=0,
+                xlabel = {Offset [mm]}, ylabel = {Maximum displacement [nm]}
+            ]
+            \foreach \n in {1,...,3} {
+                \addplot+[no marks] table [
+                    col sep=comma, x expr = \thisrowno{0}, y expr = 1e9*\thisrowno{\n}
+                ] {../Simplified-Model/constant-force/Offsets/max_displacement.csv};
+            };
+            \legend{Spigot, Stem, Collar};
+            \end{axis}
+        \end{tikzpicture}
+        \caption{Constant load}
+    \end{subfigure}
+    \caption{Maximum displacement as a function of the offset from base of spigot}
+    \label{fig:offset-from-base}
+\end{figure}

@@ -1,0 +1,23 @@
+\documentclass{standalone}
+\usepackage{tikz, pgfplots}
+\begin{document}
+\begin{tikzpicture}
+    \begin{axis}[
+        width = 12cm, height = 5.645cm,
+        xlabel = {Time (\%)}, ylabel = {Amplitude loss (\%) },
+        title = Vibration amplitude loss for time-variant frequencies: Stem,
+        legend columns = 1,
+        legend cell align = left,
+        legend pos = outer north east,
+        % ymax = 1,
+        ymin = -35,
+    ]
+    \foreach \i in {13,...,21} {
+        \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{\i}] {constant-force/Error/stem.csv};
+    };
+    \foreach \freq in {450,500,...,850} {
+        \expandafter\addlegendentry\expandafter{\freq Hz}
+    };
+    \end{axis}
+\end{tikzpicture}
+\end{document}

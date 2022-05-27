@@ -1,0 +1,8 @@
+2600 0 1 0           
+17 Abaqus 2022 - 310 17 ACIS 31.0 Unknown 24 Fri May 27 11:37:53 2022 
+1 9.9999999999999995e-07 1e-10 
+T @77 57A9JYPZ9MP64DSCHP7MKBJJD2QUY6PZCBU4PPQXPBJMFA54FC54M2QWPBDMJP67KAMBFGN279CCR 
+-0 body $1 -1 -1 $-1 $-1 $-1 $2 F #
+-1 string_attrib-name_attrib-gen-attrib $-1 -1 $-1 $-1 $0 2 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 @18 HKS_ATTRIB_BODY_ID @1 1 #
+-2 transform $-1 -1 1 0 0 0 1 0 0 0 1 0 0 0 1 no_rotate no_reflect no_shear #
+End-of-ACIS-data 

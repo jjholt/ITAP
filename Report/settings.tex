@@ -1,0 +1,87 @@
+\usepackage{geometry}
+	\geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in}
+\usepackage{setspace}
+	\onehalfspacing
+\usepackage{titlesec}
+	% \newcommand{\sectionbreak}{\clearpage}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+%Maths
+\usepackage{pgfplots}
+\usepackage{pgfplotstable, booktabs, array}
+	\pgfplotsset{compat=newest}
+	\usepgfplotslibrary{patchplots}
+	\pgfplotsset{plot coordinates/math parser=false}
+\usepackage{amssymb, amsmath}
+\usepackage{cancel}
+\usepackage{tikz}
+	\usetikzlibrary{plotmarks}
+	\usetikzlibrary{arrows.meta}
+	\usetikzlibrary{positioning,shapes,arrows}
+	%Control blocks
+	\tikzstyle{block} = [draw, minimum width = 2cm, minimum height = 1.2cm, fill=blue!5]
+	\tikzstyle{sum} = [draw, fill=blue!5, circle, node distance=1cm]
+\newcommand{\texdim}[2]{%Import and scale matlab2tikz images
+	\newlength\fheight
+	\newlength\fwidth
+    \setlength\fheight{#1}
+    \setlength\fwidth{#2}
+}
+\usepackage{siunitx} %SI units formatting
+
+%Electric circuits
+\usepackage{circuitikz}
+
+%Organisation
+\usepackage{import}
+\usepackage[nottoc]{tocbibind}
+% \usepackage[authoryear, round, comma]{natbib} %Bibliography style
+\usepackage[numbers,square]{natbib} %Bibliography style
+\bibliographystyle{unsrtnat} %Bibliography style
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+%Importing inkscape images with \incfig
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+%Code
+\usepackage{listings}
+	\lstset{
+		numbers=left, frame=single, breaklines=true, %Keep text inside a frame, and number each line.
+		basicstyle = \scriptsize\ttfamily, %smaller size, monospaced
+	}
+
+% Miscellanious
+\usepackage{hyperref}
+	\hypersetup{
+		colorlinks=false,
+		linkcolor=black,
+		filecolor=black,      
+		urlcolor=black,
+		pdfborder = {0 0 0},
+	}
+\usepackage{pmboxdraw}
+\usepackage{appendix}
+\usepackage{subcaption}
+
+\pgfplotsset{
+    every axis legend/.append style = {
+        legend columns = 3,
+        anchor = south east,
+    },
+	every axis title/.append style = {
+		above, yshift=6pt,
+	}
+}
+
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+\usepackage{titlesec}
+
+\titleformat{\chapter}
+  {\normalfont\huge\bfseries}{\thechapter.}{20pt}{\huge}

@@ -1,0 +1,17 @@
+PMMA density of \SI{1180}{\kilo\gram\per\metre\cubed} \textbf{(citation missing. took from Wikipedia)}. Bone density is \SIrange{1750}{2500}{\kilo\gram\per\metre\cubed} with the low-end representing a cortical diaphysis of a tibia \cite{helgason_mathematical_2008} and in the high end, of a femur \cite{treece_imaging_2012}.
+
+Orthotropic model that does not consider cancellous bone \cite{ahmed_experimental_2020, ashman_continuous_1984}. In Abaqus the exact model is E\emph{ngineering Constants}, not \emph{Orthotropic}.
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+    \textbf{Young's Modulus} & \textbf{Poisson's ratio} & \textbf{Shear Modulus} \\ \hline
+    $E_1$: \SI{12.00}{\giga\pascal} & $ \nu_{12}: 0.22 $ & $G_{12}: \SI{5.61}{\giga\pascal}$ \\
+    $E_2$: \SI{20.00}{\giga\pascal} & $ \nu_{13}: 0.38 $ & $G_{13}: \SI{4.53}{\giga\pascal}$ \\
+    $E_3$: \SI{13.40}{\giga\pascal} & $ \nu_{23}: 0.35 $ & $G_{23}: \SI{6.23}{\giga\pascal}$
+\end{tabular}
+\caption{Material properties. Directions 1 and 3 are radial, direction 2 is axial.}
+\label{tb:orthotropic-model-properties}
+\end{table}
+
+Two models of bone were produced: a simplified hollow cylinder, and CT reconstruction using InVesalius \cite{amorim_invesalius_2015} and Bonemat \cite{taddei_material_2007,schileo_cortical_2020}.
+CT scan datasets were from the Laboratory of Human Anatomy and Embryology, University of Brussels (ULB), Belgium
