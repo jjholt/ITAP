@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{tikz, pgfplots}
+\pgfplotsset{
+    every axis legend/.append style = { legend columns = 3, anchor = south east, },
+	every axis title/.append style = {above, yshift=6pt,}
+}
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{loglogaxis}[
+        % width = 14cm, height = 6cm,
+        xlabel = {Frequency (Hz)}, ylabel = {Maximum displacement (m)},
+        title = {Maximum displacement as a function of frequency},
+    ]
+    \foreach \i in {1,3,2} {
+        \addplot+[only marks] table [col sep=comma, y expr = \thisrowno{\i}] {../constant-force/Frequencies-100-periods/magnitudes.csv};
+    };
+    \legend{Spigot, Stem, Collar}
+    \end{loglogaxis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        % width = 14cm, height = 6cm,
+        align = center, % Necessary for the two line split in y-label.
+        xlabel = {Frequency (Hz)}, ylabel = {{Max. displacement \\ relative to spigot}},
+        title = {Maximum displacement relative to spigot as a function of frequency},
+    ]
+
+    \foreach \i in {3,1,2} {
+        \addplot+[only marks] table [col sep=comma, y expr = \thisrowno{\i}] {../constant-force/Frequencies-100-periods/relative_magnitudes.csv};
+    };
+    \legend{Spigot, Stem, Collar}
+    \end{axis}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width = 14cm, height = 5cm,
+        xlabel = {Time [ms]}, ylabel = {Displacement [nm]},
+        title = {Displacement over time for sinusoidal input at 750 Hz},
+        ]
+        \addplot[red, no marks] table [col sep=comma, x expr = 1e3* \thisrowno{0}, y expr = 1e9 * \thisrowno{3}]
+        {../constant-force/Frequencies-100-periods/csv/Job-42_750-Hz-100-periods_Node STEM-1.17.csv};
+        \addlegendentry{Stem}
+        \addplot[dashed, domain=0:135] {1+ 0.7*exp(-0.01*x)};
+    \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width = 12cm, height = 5.645cm,
+        xlabel = {Time (\%)}, ylabel = {Amplitude loss (\%) },
+        title = Vibration amplitude loss for time-variant frequencies: Stem,
+        legend columns = 1,
+        legend cell align = left,
+        legend pos = outer north east,
+        % ymax = 1,
+        ymin = -35,
+    ]
+    \foreach \i in {13,...,21} {
+        \addplot+[no marks] table [col sep=comma, x expr = 100*(1-\thisrowno{0}), y expr = 100*\thisrowno{\i}] {../constant-force/Error/stem.csv};
+    };
+    \foreach \freq in {450,500,...,850} {
+        \expandafter\addlegendentry\expandafter{\freq Hz}
+    };
+    \end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        width = 12cm, height = 6cm,
+        title = {Relative error between simplified (S) and complete (F) models},
+        xlabel = {Frequency [Hz]}, ylabel = {$\frac{F-S}{F}$},
+        ylabel style={rotate=-90}
+    ]
+    \foreach \i in {1,3,2} {
+        \addplot+[only marks] table [col sep=comma, y index = \i] {../constant-force/error_flanged-simplified.csv};
+    };
+    \legend{Spigot, Stem, Collar}
+        % \addplot+[ no marks] table [col sep=comma, y index = 1, ]
+            % {Modelling/error_flanged-simplified.csv};
+        % \addlegendentry{Spigot}
+        % \addplot+[ no marks] table [col sep=comma, y index = 3, ]
+            % {Modelling/error_flanged-simplified.csv};
+        % \addlegendentry{Stem}
+        % \addplot+[ no marks] table [col sep=comma, y index = 2, ]
+            % {Modelling/error_flanged-simplified.csv};
+        % \addlegendentry{Collar}
+    \end{axis}
+\end{tikzpicture}
+\end{document}

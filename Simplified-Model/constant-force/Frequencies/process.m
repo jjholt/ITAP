@@ -18,16 +18,11 @@ for n = 1:numel(frequency)
     collar_max_magnitude(n,1) = max(collar_magnitude);
 end
 
-writetable(table(frequency, spigot_max_magnitude, collar_max_magnitude, stem_max_magnitude), "magnitudes_simplified.csv")
-
-writetable(table(frequency, spigot_max_magnitude), "spigot_maxima.csv");
-writetable(table(frequency, stem_max_magnitude), "stem_maxima.csv");
-writetable(table(frequency, collar_max_magnitude), "collar_maxima.csv");
+writetable(table(frequency, spigot_max_magnitude, collar_max_magnitude, stem_max_magnitude), "magnitudes.csv")
 
 % Change relative to spigot
-
-writetable(table(frequency, (stem_max_magnitude./spigot_max_magnitude), 'VariableNames', {'frequency', 'relative_magnitude'}), "stem_maxima_normalised.csv");
-writetable(table(frequency, (collar_max_magnitude./spigot_max_magnitude), 'VariableNames', {'frequency', 'relative_magnitude'}),"collar_maxima_normalised.csv");
-writetable(table(frequency, (spigot_max_magnitude./spigot_max_magnitude), 'VariableNames', {'frequency', 'relative_magnitude'}), "spigot_maxima_normalised.csv");
+T = table(frequency, stem_max_magnitude./spigot_max_magnitude, collar_max_magnitude./spigot_max_magnitude, spigot_max_magnitude./spigot_max_magnitude);
+T = renamevars(T, 1:width(T), ["frequency", "stem_relative_magnitude", "collar_relative_magnitude", "spigot_relative_magnitude"]);
+writetable(T, "relative_magnitudes.csv")
 
 save("maxima-and-tail", "collar_max_magnitude", "spigot_max_magnitude", "stem_max_magnitude");
